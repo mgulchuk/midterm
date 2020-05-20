@@ -56,6 +56,8 @@ $f3->route('GET|POST /survey', function($f3)
     }
 
     $f3->set('survey', $survey);
+    $f3->set('name', $_POST['name']);
+    $f3->set('surv', $_POST['survey']);
 
     $view = new Template();
     echo $view -> render("views/survey.html");
