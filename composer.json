@@ -1,0 +1,14 @@
+{
+  "name": "mgulchuk/IT328/food",
+  "authors":
+  [
+    {
+      "name": "Michael Gulchuk",
+      "email": "mgulchuk@mail.greenriver.edu"
+    }
+  ],
+  "require":
+  {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
