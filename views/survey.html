@@ -20,6 +20,11 @@
 
             <div class="col-sm-4">
                 <input class="form-control" type="text" name="name" id="name">
+                <span class="err">
+                    <check if="{{ isset(@errors['name']) }}">
+                        {{ @errors['name'] }}
+                    </check>
+                </span>
             </div>
         </div>
 
@@ -31,6 +36,11 @@
                                   name="survey[]"
                                   value="{{ @surv }}"> {{ ucfirst(@surv) }}</label><br>
                 </repeat>
+                <span class="err">
+                    <check if="{{ isset(@errors['survey']) }}">
+                        {{ @errors['survey'] }}
+                    </check>
+                </span>
             </div>
         </div>
 

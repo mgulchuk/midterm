@@ -13,6 +13,7 @@ session_start();
 // Require the autoload file
 require_once('vendor/autoload.php');
 require_once("model/data-layer.php");
+require_once("model/validate.php");
 
 
 // Instantiate the F3 Base class
@@ -32,13 +33,26 @@ $f3->route('GET|POST /survey', function($f3)
     //If the form has been submitted
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        //Store the data in the session array
-        $_SESSION['name'] = $_POST['name'];
-        $_SESSION['survey'] = $_POST['survey'];
+        if (!validName($_POST['name'])) {
 
-        //Redirect to summary page
-        $f3->reroute('summary');
-        session_destroy();
+            //Set an error variable in the F3 hive
+            $f3->set('errors["name"]', "Invalid name");
+        }
+
+        if (!isset($_POST['survey'])) {
+            //Set an error variable in the F3 hive
+            $f3->set('errors["survey"]', "Select at least one");
+        }
+
+        if (empty($f3->get('errors'))) {
+            //Store the data in the session array
+            $_SESSION['name'] = $_POST['name'];
+            $_SESSION['survey'] = $_POST['survey'];
+
+            //Redirect to summary page
+            $f3->reroute('summary');
+            session_destroy();
+        }
     }
 
     $f3->set('survey', $survey);
