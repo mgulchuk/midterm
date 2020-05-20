@@ -19,9 +19,14 @@ $f3 = Base::instance();
 // Define a default route
 $f3->route('GET /', function()
 {
-    //echo '<h1>Welcome to my dating website</h1>';
     $view = new Template();
     echo $view -> render("views/home.html");
+});
+
+$f3->route('GET|POST /survey', function()
+{
+    $view = new Template();
+    echo $view -> render("views/survey.html");
 });
 
 // Run fat free
